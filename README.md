@@ -18,7 +18,7 @@ flowchart LR
   U[User] -->|POST /jobs| API[FastAPI API]
   API -->|Presigned PUT URL| MINIO[(MinIO)]
   U -->|PUT video| MINIO
-  MINIO -->|Webhook (ObjectCreated)| EB[Mock Event Bus]
+  MINIO -->|Webhook ObjectCreated| EB[Mock Event Bus]
   EB -->|Redis Stream| ORCH[Mock Orchestrator]
   ORCH -->|Redis Queue| W[Worker]
   W -->|ffprobe + Bedrock mock| W
@@ -143,4 +143,3 @@ CI includes:
 5. Poll `GET /jobs/{job_id}` until `SUCCEEDED`
 6. Fetch `GET /jobs/{job_id}/result`
 7. Open Grafana and show the dashboard panels (API requests, job success/failure)
-
