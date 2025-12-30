@@ -38,7 +38,7 @@ flowchart LR
   API -->|Presigned PUT URL| S3[(S3 Uploads)]
   S3 -->|ObjectCreated| EVB[EventBridge]
   EVB --> SFN[Step Functions]
-  SFN -->|Idempotency (conditional write)| DDBI[(DynamoDB Idempotency)]
+  SFN -->|Idempotency conditional write| DDBI[(DynamoDB Idempotency)]
   SFN -->|SendMessage| SQS[(SQS Jobs)]
   SQS -->|poll| W[ECS Worker Service]
   W -->|store status| DDBJ[(DynamoDB Jobs)]
