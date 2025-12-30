@@ -34,7 +34,7 @@ flowchart LR
 ### AWS Mode (Terraform deploy)
 ```mermaid
 flowchart LR
-  U[User] --> API[FastAPI (ECS Fargate)]
+  U[User] --> API[FastAPI on ECS Fargate]
   API -->|Presigned PUT URL| S3[(S3 Uploads)]
   S3 -->|ObjectCreated| EVB[EventBridge]
   EVB --> SFN[Step Functions]
