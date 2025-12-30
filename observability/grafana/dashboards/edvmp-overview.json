@@ -1,0 +1,43 @@
+{
+  "uid": "edvmp-overview",
+  "title": "EDVMP Overview",
+  "schemaVersion": 39,
+  "version": 1,
+  "timezone": "browser",
+  "panels": [
+    {
+      "type": "stat",
+      "title": "Jobs Succeeded (5m)",
+      "gridPos": { "x": 0, "y": 0, "w": 6, "h": 4 },
+      "targets": [
+        {
+          "expr": "increase(edvmp_worker_jobs_total{status=\"succeeded\"}[5m])",
+          "legendFormat": "succeeded"
+        }
+      ]
+    },
+    {
+      "type": "stat",
+      "title": "Jobs Failed (5m)",
+      "gridPos": { "x": 6, "y": 0, "w": 6, "h": 4 },
+      "targets": [
+        {
+          "expr": "increase(edvmp_worker_jobs_total{status=\"failed\"}[5m])",
+          "legendFormat": "failed"
+        }
+      ]
+    },
+    {
+      "type": "timeseries",
+      "title": "API Requests",
+      "gridPos": { "x": 0, "y": 4, "w": 12, "h": 6 },
+      "targets": [
+        {
+          "expr": "sum by (path, method) (rate(edvmp_api_requests_total[1m]))",
+          "legendFormat": "{{method}} {{path}}"
+        }
+      ]
+    }
+  ]
+}
+
